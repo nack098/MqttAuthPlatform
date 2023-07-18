@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "server-start": "sudo docker compose -f ./server/docker-compose.yml up",
+    "server-start": "sudo docker compose up",
     "next-dev": "next dev",
     "next-build": "next build",
     "next-start": "next start && server-start",
