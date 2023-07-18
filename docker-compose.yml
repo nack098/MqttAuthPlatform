@@ -1,0 +1,31 @@
+services:
+  mqtt-server:
+    image: iegomez/mosquitto-go-auth
+    volumes:
+      - ./.config/:/etc/mosquitto
+    ports:
+      - "1883:1883"
+      - "1884:1884"
+    networks:
+      - mqtt
+
+  mysql:
+    image: mysql:8.0.33
+    volumes:
+      - mqtt-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: mqtt-data
+    ports:
+      - "3306:3306"
+    networks:
+      - mqtt
+
+volumes:
+  mqtt-data:
+
+networks:
+  mqtt:
+    driver: bridge
+    ipam:
+      driver: default
