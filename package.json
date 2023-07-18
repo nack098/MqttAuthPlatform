@@ -8,8 +8,8 @@
     "next-build": "next build",
     "next-start": "next start && server-start",
     "next-lint": "next lint",
-    "dev": "concurrently \"yarn:next-dev\" \"yarn:server-start\"",
-    "start": "concurrently \"yarn:next-start\" \"yarn:server-start\""
+    "dev": "yarn server-start | yarn next-dev",
+    "start": "yarn server-start | yarn next-start"
   },
   "dependencies": {
     "@prisma/client": "5.0.0",
