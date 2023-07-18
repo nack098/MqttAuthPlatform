@@ -6,10 +6,10 @@
     "server-start": "sudo docker compose up",
     "next-dev": "next dev",
     "next-build": "next build",
-    "next-start": "next start && server-start",
+    "next-start": "next start",
     "next-lint": "next lint",
-    "dev": "yarn server-start | yarn next-dev",
-    "start": "yarn server-start | yarn next-start"
+    "dev": "concurrently \"yarn:server-start\" \"yarn:next-dev\"",
+    "start": "concurrently \"yarn:server-start\" \"yarn:next-start\""
   },
   "dependencies": {
     "@prisma/client": "5.0.0",
