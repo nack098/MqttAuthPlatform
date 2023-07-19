@@ -1,5 +1,10 @@
 # MQTT Auth Platform
 
+Mqtt Auth Platform is a platform to make user connect to mqtt broker provide by mosquitto with authorization from database (Mysql in this case). Providing nextjs as a front-end to login and register to network.
+With a admin panel for superuser to watch and manage account.
+
+---
+
 # Table of contents
 
 - [Solution](#Solution)
