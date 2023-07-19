@@ -1,6 +1,7 @@
 services:
   mqtt-server:
     image: iegomez/mosquitto-go-auth
+    container_name: mqtt-server
     volumes:
       - ./.config/:/etc/mosquitto
     ports:
@@ -8,9 +9,12 @@ services:
       - "1884:1884"
     networks:
       - mqtt
+    depends_on:
+      - db
 
-  mysql:
+  db:
     image: mysql:8.0.33
+    container_name: db
     volumes:
       - mqtt-data:/var/lib/mysql
     environment:
@@ -26,6 +30,5 @@ volumes:
 
 networks:
   mqtt:
-    driver: bridge
     ipam:
       driver: default
