@@ -1,34 +1,102 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Table of contents
 
-## Getting Started
+- [Solution](#Solution)
+- [Structure](#Structure)
+  - [Files](##Files)
+  - [Database](##Database)
+- [To-Do](#To-Do)
+- [Test](#Test)
 
-First, run the development server:
+---
+
+### Order from client
+
+- Create MQTT. Broker
+- Create Admin Panel
+
+---
+
+# Solution
+
+- Using Mosquitto MQTT. as a back-end with [mosquitto-go-auth](https://github.com/iegomez/mosquitto-go-auth) plugin with MySQL as a database.
+
+- And connect to front-end ( NextJS. ) via websocket which provide info from database and mqtt itself.
+
+- Using ACL. as controlling method which can provide more control for user.
+
+- MQTT. protocol will be at port:1883
+  Web socket protocol will be at port:8000
+
+---
+
+# Structure
+
+## Files
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+├── docker-compose.yml
+├── next.config.js
+├── package.json
+├── postcss.config.js
+├── prisma
+│   ├── migrations
+│   │   ├── 20230718191144_init
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   └── schema.prisma
+├── public
+│   ├── next.svg
+│   └── vercel.svg
+├── README.md
+├── src
+│   ├── app
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   └── components
+│       ├── login.tsx
+│       └── navigation.tsx
+├── tailwind.config.js
+├── tsconfig.json
+└── yarn.lock
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- <strong><u>mqtt-data/account</u></strong>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+| name          | types                               |
+| ------------- | ----------------------------------- |
+| username      | string                              |
+| userId        | string(unique)                      |
+| hash_password | string(bcryptHash)                  |
+| superuser     | interger( 1 for true, 0 for false ) |
 
-## Learn More
+- <strong><u>mqtt-data/acl</u></strong>
 
-To learn more about Next.js, take a look at the following resources:
+| name      | types                   |
+| --------- | ----------------------- |
+| userId    | string                  |
+| topic     | string                  |
+| readWrite | integer(1=read,2=write) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# To-Do
 
-## Deploy on Vercel
+- [x] Create database
+- [x] Create and config docker file
+- [x] Add and connect ORM. to database
+- [ ] Create Front-end
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Test
+
+- [x] Connect to protocol
+- [x] ACL. Block unauthorized
+- [x] Real time database update
+- [ ] Iot. Connection
+
+---
