@@ -2,6 +2,8 @@
   "name": "mqtt",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "author": "Nakuya",
   "scripts": {
     "server-start": "sudo docker compose up",
     "next-dev": "next dev",
