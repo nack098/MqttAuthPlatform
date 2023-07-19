@@ -1,3 +1,5 @@
+# MQTT Auth Platform
+
 # Table of contents
 
 - [Solution](#Solution)
@@ -6,26 +8,6 @@
   - [Database](##Database)
 - [To-Do](#To-Do)
 - [Test](#Test)
-
----
-
-### Order from client
-
-- Create MQTT. Broker
-- Create Admin Panel
-
----
-
-# Solution
-
-- Using Mosquitto MQTT. as a back-end with [mosquitto-go-auth](https://github.com/iegomez/mosquitto-go-auth) plugin with MySQL as a database.
-
-- And connect to front-end ( NextJS. ) via websocket which provide info from database and mqtt itself.
-
-- Using ACL. as controlling method which can provide more control for user.
-
-- MQTT. protocol will be at port:1883
-  Web socket protocol will be at port:8000
 
 ---
 
