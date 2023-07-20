@@ -7,7 +7,6 @@ With a admin panel for superuser to watch and manage account.
 
 # Table of contents
 
-- [Solution](#Solution)
 - [Structure](#Structure)
   - [Files](##Files)
   - [Database](##Database)
@@ -21,7 +20,9 @@ With a admin panel for superuser to watch and manage account.
 ## Files
 
 ```bash
+.
 ├── docker-compose.yml
+├── LICENSE
 ├── next.config.js
 ├── package.json
 ├── postcss.config.js
@@ -36,17 +37,29 @@ With a admin panel for superuser to watch and manage account.
 │   └── vercel.svg
 ├── README.md
 ├── src
+│   ├── actions
+│   │   ├── index.ts
+│   │   ├── login.ts
+│   │   └── register.ts
 │   ├── app
+│   │   ├── api
+│   │   │   └── auth
+│   │   │       └── [...nextauth]
+│   │   │           └── route.ts
 │   │   ├── favicon.ico
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   └── page.tsx
-│   └── components
-│       ├── login.tsx
-│       └── navigation.tsx
+│   ├── components
+│   │   ├── login.tsx
+│   │   ├── navigation.tsx
+│   │   └── provider.tsx
+│   └── database
+│       └── database.ts
 ├── tailwind.config.js
-├── tsconfig.json
-└── yarn.lock
+├── test
+│   └── bcrypt.mjs
+└── tsconfig.json
 ```
 
 ## Database
@@ -75,7 +88,9 @@ With a admin panel for superuser to watch and manage account.
 - [x] Create database
 - [x] Create and config docker file
 - [x] Add and connect ORM. to database
-- [ ] Create Front-end
+- [/] Create Front-end
+  - [x] Authentication System.
+  - [ ] Admin Panel for super user.
 
 ---
 
