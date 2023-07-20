@@ -1,6 +1,6 @@
 "use client";
 
-import register from "@/actions/register";
+import { login } from "@/actions";
 import React, { useState } from "react";
 
 export interface LoginValue {
@@ -15,7 +15,7 @@ const Login: React.FC = () => {
   }>({ success: undefined, user: {} });
 
   const action = async (formdata: FormData) => {
-    const res = await register(formdata);
+    const res = await login(formdata);
     responseState(res);
   };
 
@@ -24,7 +24,7 @@ const Login: React.FC = () => {
       action={action}
       className="fixed flex flex-col top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-zinc-600 p-7 rounded-xl"
     >
-      <h3 className="font-bold text-2xl">Register</h3>
+      <h3 className="font-bold text-2xl">Login</h3>
       <label className="font-bold">ID</label>
       <input type="text" name="id" className="my-2 text-black" />
       <label className="font-bold">Password</label>

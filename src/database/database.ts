@@ -1,30 +1,32 @@
 import { PrismaClient } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 export async function getAccountDetail(username: string, password: string) {
   const allusers = await prisma.account.findMany({
     where: { username: { equals: username } },
   });
-  let currentUser = {};
   for (const user of allusers) {
     if (await bcrypt.compare(password, user.hash_password)) {
-      currentUser = user;
-      break;
+      return {
+        success: true,
+        user: {
+          username: user.username,
+          userId: user.userId,
+          superuser: user.superuser === 1 ? true : false,
+        },
+      };
     }
   }
-  if (Object.keys(currentUser).length !== 0) {
-    return {
-      founded: true,
-      user: currentUser,
-    };
-  } else {
-    return {
-      founded: false,
-      user: {},
-    };
-  }
+  return {
+    success: false,
+    user: {
+      username: "",
+      userId: "",
+      superuser: false,
+    },
+  };
 }
 
 export async function createAccount(username: string, password: string) {

@@ -1,9 +1,10 @@
-import Login from "@/components/login";
+"use client";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
   return (
     <main>
-      <Login />
+      <button onClick={() => signIn()}>SignIn</button>
     </main>
   );
 }
